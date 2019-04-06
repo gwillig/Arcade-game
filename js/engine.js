@@ -107,6 +107,7 @@ var Engine = (function(global) {
          * for that particular row of the game level.
          */
          // Display game name and pause
+		;
         drawText(text);
         // Display score
         displayScoreLevel(score, gameLevel);
