@@ -18,7 +18,7 @@ class Enemy{
       // The following condition check if player is killed.
       if((this.y==player.y)&&(
                               ((this.x-25)<player.x)&&
-                              (player.x<(this.x+77))
+                                (player.x<(this.x+77))
                             )){
         score = 0;
         gameLevel = 0 ;
@@ -70,8 +70,8 @@ class Player{
     this.y = y;
     this.speed = speed;
     this.name="Gustav";
-    this.currentSkin = 1;
-    this.skin = [
+    this.currentspite = 1;
+    this.spite = [
                 'images/char-boy.png',
                 'images/char-boy.png',
                 'images/char-cat-girl.png',
@@ -82,48 +82,48 @@ class Player{
   }
   update(){};
   render(){
-    ctx.drawImage(Resources.get(this.skin[this.currentSkin]), this.x, this.y);
+    ctx.drawImage(Resources.get(this.spite[this.currentspite]), this.x, this.y);
   }
   change_skin(x) {
-    this.currentSkin = parseInt(x)
+    this.currentspite = parseInt(x)
   }
   handleInput(keyPress) {
 
           switch (keyPress) {
               case 'left':
-                  if(player.x<=0){
+                  if(this.x<=0){
                       return
                   }
                   else{
-                      player.x -= player.speed;
+                      this.x -= this.speed;
                       break;
                   }
 
               case 'right':
-                  if (player.x>=400){
+                  if (this.x>=400){
                       return
                   }
                   else {
-                     player.x += player.speed
+                     this.x += this.speed
                      break;
                   }
 
 
               case 'up':
-                  if ((player.y - player.speed)<=-20){
+                  if ((this.y - this.speed)<=-20){
                       displayScoreLevel()
                       return
                   }
                   else {
-                     player.y -= player.speed
+                     this.y -= this.speed
                      break;
                         }
               case 'down':
-                  if ((player.y + 50)>430){
+                  if ((this.y + 50)>430){
                       return
                   }
                   else {
-                     player.y += player.speed
+                     this.y += this.speed
                      break;
                   }
               case '1':
@@ -131,7 +131,7 @@ class Player{
               case '3':
               case '4':
               case '5':
-                  player.change_skin(keyPress);
+                  this.change_skin(keyPress);
                   break;
               default:
                   break;
