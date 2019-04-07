@@ -29,6 +29,18 @@ var Engine = (function(global) {
     canvas.height = 606;
     doc.body.appendChild(canvas);
 
+    let newDiv = document.createElement("div");
+    let newSpan = document.createElement("p");
+    newSpan.setAttribute("id","score");
+    newSpan.textContent = `Score: ${score}; Level: ${gameLevel}`;
+    newSpan.style.fontSize = "1.5em";
+    newSpan.style.paddingLeft = `${canvas.width/2}px`;
+    newSpan.style.align = "center";
+    newSpanGameIns = newSpan.cloneNode(true);
+    newSpanGameIns.textContent= "Press 1| 2|3|4|5 to change the player skin"
+    newDiv.appendChild(newSpan);
+    newDiv.appendChild(newSpanGameIns);
+    document.body.appendChild(newDiv);
     /* This function serves as the kickoff point for the game loop itself
      * and handles properly calling the update and render methods.
      */
@@ -78,7 +90,7 @@ var Engine = (function(global) {
      * functionality this way (you could just implement collision detection
      * on the entities themselves within your app.js file).
      */
-    function update(dt) {
+    function update(dt,pause) {
         updateEntities(dt);
     }
 
@@ -109,8 +121,7 @@ var Engine = (function(global) {
          // Display game name and pause
 		;
         drawText(text);
-        // Display score
-        displayScoreLevel(score, gameLevel);
+
         var rowImages = [
                 'images/water-block.png', // Top row is water
                 'images/stone-block.png', // Row 1 of 3 of stone
@@ -164,8 +175,9 @@ var Engine = (function(global) {
      * handle game reset states - maybe a new game menu or a game over screen
      * those sorts of things. It's only called once by the init() method.
      */
+
     function reset() {
-        // noop
+
     }
 
     /* Go ahead and load all of the images we know we're going to need to

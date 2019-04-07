@@ -1,33 +1,38 @@
-// Define variable
-var text = "Classic acarade game";
-let [score, gameLevel] = [10,5]
+// General funtions
 
-// Enemies our player must avoid
-var Enemy = function() {
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
 
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
+
+class Enemy{
+  constructor(y){
+    this.x = 0;
+    this.y = y;
+    this.speed = 5;
     this.sprite = 'images/enemy-bug.png';
-};
+    }
 
-// Update the enemy's position, required method for game
-// Parameter: dt, a time delta between ticks
-Enemy.prototype.update = function(dt) {
-    // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
-};
+  update(dt,pause){
+      this.x+=(this.speed*dt)
+      if (this.x>=400){
+        this.x = 0
+      }
+      // The following condition check if player is killed.
+      if((this.y==player.y)&&(
+                              ((this.x-25)<player.x)&&
+                              (player.x<(this.x+77))
+                            )){
+        score = 0;
+        gameLevel = 0 ;
+        allEnemies = [new Enemy(230)];
+        player =new Player(400,430,50);
 
-// Draw the enemy on the screen, required method for game
-Enemy.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
+        return
+      }
+    }
 
-// Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
+  render() {
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    };
+  }
 
 
 function drawText(text) {
@@ -39,25 +44,26 @@ function drawText(text) {
   ctx.fillText(text, 0,35);
 }
 
-function displayScoreLevel (score, gameLevel) {
+function displayScoreLevel () {
   /* @decription:
      @param: Score (string)
      @param: gameLevel (string)
      @returns: Nothing
    */
-   // let newDiv = document.createElement("div");
-   // let newSpan = document.createElement("p");
-   // newSpan.setAttribute("id","score")
-   // newSpan.textContent = `Score: ${score}; Level: ${gameLevel}`
-   // newSpan.style.fontSize="1.5em"
-   // newSpan.style.align = "center"
-   // newDiv.appendChild(newSpan)
-   // document.body.appendChild(newDiv)
+   score += 1
+   if (score%5==0){
+     // IF level up then increase the speed and add new enempy
+     gameLevel+=1;
+     allEnemies.push(new Enemy(230-200*Math.random()));
+     allEnemies.forEach(function(enemy){
+       enemy.speed+=(Math.random()*5)
 
-
+     })
+     score += 1;
+   }
+   document.querySelector("#score").textContent = `Score: ${score}; Level: ${gameLevel}`
+   player.y = 430;
 }
-
-
 class Player{
   constructor(x,y,speed){
     this.x = x;
@@ -74,35 +80,52 @@ class Player{
                 'images/char-princess-girl.png',
                 ]
   }
-  update(){console.log("da")};
-  // render(){
-  //   let player_imag = new Image();
-  //   player_imag.src = this.skin[1]
-  //   player_imag.onload = function(){
-  //     ctx.drawImage(player_imag,this.x, this.y)
-  //   }
-  //
-  // }
+  update(){};
   render(){
     ctx.drawImage(Resources.get(this.skin[this.currentSkin]), this.x, this.y);
   }
   change_skin(x) {
     this.currentSkin = parseInt(x)
   }
-  handleInput(keyPress, pause) {
+  handleInput(keyPress) {
+
           switch (keyPress) {
               case 'left':
-                  player.x -= player.speed
-                  break;
+                  if(player.x<=0){
+                      return
+                  }
+                  else{
+                      player.x -= player.speed;
+                      break;
+                  }
+
               case 'right':
-                  player.x += player.speed
-                  break;
+                  if (player.x>=400){
+                      return
+                  }
+                  else {
+                     player.x += player.speed
+                     break;
+                  }
+
+
               case 'up':
-                  player.y -= player.speed
-                  break;
+                  if ((player.y - player.speed)<=-20){
+                      displayScoreLevel()
+                      return
+                  }
+                  else {
+                     player.y -= player.speed
+                     break;
+                        }
               case 'down':
-                  player.y += player.speed
-                  break;
+                  if ((player.y + 50)>430){
+                      return
+                  }
+                  else {
+                     player.y += player.speed
+                     break;
+                  }
               case '1':
               case '2':
               case '3':
@@ -116,11 +139,18 @@ class Player{
       };}
 
 }
+
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-let allEnemies = []
-let player =new Player(0,0,50)
+
+let text = "Classic acarade game";
+let [score, gameLevel] = [0,0]
+let pause = false;
+
+let allEnemies = [new Enemy(230)];
+let player =new Player(400,430,50);
+
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
