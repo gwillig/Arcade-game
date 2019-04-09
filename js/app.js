@@ -78,6 +78,14 @@ function displayScoreLevel () {
    player.y = 430;
 }
 class Player{
+  /**
+* @description
+    Is the player class.
+* @constructor
+*   @param
+    y {int} - Is the y coordinate on which the new object will be spawned
+    x {int} - Is the y coordinate on which the new object will be spawned
+*/
   constructor(x,y,speed){
     this.x = x;
     this.y = y;
