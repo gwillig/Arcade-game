@@ -47,7 +47,7 @@ function drawText(text) {
   * @decription
       Creates the game title
   * @param
-      text {string}: this string will be drawn on the page
+      text {string} - this string will be drawn on the page
   * @returns: Nothing
    */
   ctx.font ='35pt Arial';
