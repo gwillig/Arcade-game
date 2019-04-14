@@ -57,14 +57,15 @@ function drawText(text) {
 function displayScoreLevel () {
 /**
   * @decription
-      * Shows the current sorce level of the player
-  * @param: Nothing
-
-  * @returns: Nothing
+    * Shows the current sorce level of the player
+  * @param
+    * Nothing
+  * @returns
+    * Nothing
    */
    score += 1
    if (score%5==0){
-     // IF level up then increase the speed and add new enempy
+     // If level up then increase the speed and add new enempy
      gameLevel+=1;
      allEnemies.push(new Enemy(230-200*Math.random()));
      allEnemies.forEach(function(enemy){
