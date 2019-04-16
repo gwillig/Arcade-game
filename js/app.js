@@ -5,7 +5,7 @@
 class Enemy{
   /**
 * @description
-    Is the enemy class 
+    Is the enemy class
 * @constructor
 *   @param
     y {int} - Is the y coordinate on which the new object will be spawned
@@ -43,19 +43,24 @@ class Enemy{
 
 
 function drawText(text) {
-  /* @decription: Creates the game title
-     @param: text (string)
-     @returns: Nothing
+/**
+  * @decription
+      Creates the game title
+  * @param
+      text {string}: this string will be drawn on the page
+  * @returns: Nothing
    */
   ctx.font ='35pt Arial';
   ctx.fillText(text, 0,35);
 }
 
 function displayScoreLevel () {
-  /* @decription:
-     @param: Score (string)
-     @param: gameLevel (string)
-     @returns: Nothing
+/**
+  * @decription
+      * Shows the current sorce level of the player
+  * @param: Nothing
+
+  * @returns: Nothing
    */
    score += 1
    if (score%5==0){
