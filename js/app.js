@@ -3,6 +3,13 @@
 
 
 class Enemy{
+  /**
+* @description
+    Is the enemy class 
+* @constructor
+*   @param
+    y {int} - Is the y coordinate on which the new object will be spawned
+*/
   constructor(y){
     this.x = 0;
     this.y = y;
