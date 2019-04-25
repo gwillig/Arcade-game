@@ -1,11 +1,11 @@
-# Classic Arcade Game Clone Project
+## Classic Arcade Game Clone Project
 This was the third project for the Front-End nanodegree from udacity. Goal of the project was to create a clone of the classic old acrad game Frogger.
 
-# Instructions
+## How to Play
+1. Clone or download the project
+2. Open the index.html file in a browser 
 
-Cloning or downloading the folder and open the index.html in a browser. 
-
-# License
+## License
 The MIT License (MIT)
 
 Copyright (c) 2019 Gustav Willig
