@@ -4,3 +4,8 @@ This was the third project for the Front-End nanodegree from udacity. Goal of th
 # Instructions
 
 Cloning or downloading the folder and open the index.html in a browser. 
+
+# License
+The MIT License (MIT)
+
+Copyright (c) 2019 Gustav Willig
